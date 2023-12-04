@@ -1,0 +1,38 @@
+
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+
+/* สไตล์สำหรับกราฟ Bitcoin */
+#btcChart {
+    max-width: 800px;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* สไตล์สำหรับข้อมูลบนกราฟ */
+  #btcChart .chartjs-tooltip {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  /* สไตล์สำหรับเส้นกราฟ */
+  #btcChart .chartjs-line {
+    border-color: rgba(255, 99, 132, 1);
+    border-width: 2;
+    fill: rgba(255, 99, 132, 0.1);
+  }
+  
