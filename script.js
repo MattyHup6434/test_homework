@@ -61,4 +61,4 @@ fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
 })
 .catch(error => {
   console.error('Error fetching Bitcoin price:', error);
-});
+});   
