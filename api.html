@@ -8,10 +8,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styleAn.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body class="w3-black">
+  <div class="show-container"> 
   <div class="w3-top">
     <div class="w3-bar w3-white w3-black w3-padding w3-card">
       <!-- Float links to the right. Hide them on small screens -->
@@ -47,15 +49,37 @@
   <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
     <h2 class="w3-text-light-grey">BTC-Price</h2>
     <hr style="width:200px" class="w3-opacity">
-    
+ 
     <div id="cryptoPrice"></div>
     <canvas id="btcChart"></canvas>
     <div id="openClosePrice"></div>
+    <br>
+    <h2 class="w3-text-light-grey">formInPut</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <form 
+    method="POST" 
+    action="https://script.google.com/macros/s/AKfycbyUvy7ODaAsOXkPewcgMcD40_8Fs-wEpNAcNyzFzuX85D8Vq5E0eJZE776rnTHFAIqz/exec"
+  >
+    <input name="Email" type="email" placeholder="Email" required>
+    <input name="Name" type="text" placeholder="Name" required>
+    <button type="submit">Send</button>
+  </form>
+  <br>
+  <h2 class="w3-text-light-grey">outPutForm</h2>
+    <hr>
+    <iframe width="100%" height="800" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRi2PnZrhhSjkOmgRUsUvoYLHthjvQu_19nJORJtC0Bea6KBUhJ0ZErRyz16zJ7aWIFr6J-mZnuTlvk/pubhtml?gid=0&single=true"></iframe>
+   <br><br>
+    <h2 class="w3-text-light-grey">Map</h2>
+    <hr>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3321.586607588623!2d100.4515444248748!3d13.795331184150342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29a101f6b6f53%3A0xc48f571867a042de!2sThe%20Blessed%20Sacrament%20Church%2C%20Taling%20Chan!5e0!3m2!1sen!2sth!4v1701823694755!5m2!1sen!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+<hr>
 
 
   </div>
     </div>
-  </div>
+
 
     <!-- Footer -->
   <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
@@ -140,5 +164,6 @@ fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
 .catch(error => {
   console.error('Error fetching Bitcoin price:', error);
 });   
+
 
 </script>

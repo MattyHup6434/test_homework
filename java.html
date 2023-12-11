@@ -8,10 +8,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styleAn.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body class="w3-black">
+  <div class="show-container"> 
   <div class="w3-top">
     <div class="w3-bar w3-white w3-black w3-padding w3-card">
       <!-- Float links to the right. Hide them on small screens -->
@@ -69,11 +71,26 @@
       <h2>calculator</h2>
       <button onclick="calculators()">Click me</button>
     </div>
+    <br>
+  
+  </div>
+  
+  <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+    <div class="w3-quarter w3-section">
+      <h2>ข้อมูลการผลิตไวน์</h2>
+      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    </div>
+  
+    <div class="w3-quarter w3-section">
+      <h2>ประชากรจาก 20 ประเทศ</h2>
+      <canvas id="myChart2" style="width: 200px; max-height: 300px;"></canvas>
+  </div>
+  
   </div>
   </header>
 <br>
     </div>
-  </div>
+
   
     <!-- Footer -->
   <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
@@ -88,8 +105,8 @@
   </footer>
 
 <!-- END PAGE CONTENT -->
-</div>
 
+</div>
 </body>
 </html>
 
@@ -163,4 +180,94 @@ let calculator = {
 }
 
 
+</script>
+<script>
+
+  const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+  const yValues = [55, 49, 44, 24, 15];
+  const barColors = [
+    "#b91d47",
+    "#00aba9",
+    "#2b5797",
+    "#e8c3b9",
+    "#1e7145"
+  ];
+  
+  new Chart("myChart", {
+    type: "doughnut",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "World Wide Wine Production 2018"
+      }
+    }
+  });
+
+</script>
+
+<script>
+  const ctx = document.getElementById('myChart2');
+
+  fetch('country-by-population.json')
+      .then(response => response.json())
+      .then(data => preprocessData(data))
+      .then(processedData => createBarChart(processedData))
+      .catch(error => console.error('Error:', error));
+  
+  function preprocessData(data) {
+      // เลือกเฉพาะ 20 ประเทศแรก
+      const slicedData = data.slice(0, 20);
+  
+      // แทนที่ค่า 'undefined' ด้วย 'Unknown'
+      const processedData = slicedData.map(entry => ({
+          country: entry.country || 'Unknown',
+          population: entry.population
+      }));
+  
+      return processedData;
+  }
+  
+  function createBarChart(data) {
+      const countries = data.map(entry => entry.country);
+      const populations = data.map(entry => entry.population);
+  
+      new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: countries,
+              datasets: [{
+                  data: populations,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(255, 205, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      // เพิ่มสีตามจำนวนประชากรที่มี
+                  ],
+                  borderColor: [
+                      'rgb(255, 99, 132)',
+                      'rgb(255, 159, 64)',
+                      'rgb(255, 205, 86)',
+                      'rgb(75, 192, 192)',
+                      'rgb(54, 162, 235)',
+                      // เพิ่มสีตามจำนวนประชากรที่มี
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false
+          }
+      });
+  }
+  
 </script>
